@@ -1,10 +1,6 @@
 import styled from "styled-components";
 
 export const UserCardContainer = styled.div`
-  max-width: 86.4rem;
-  width: 100%;
-  margin: 0 auto;
-
   border-radius: 1rem;
   padding: 3.2rem;
   background: ${(props) => props.theme["base-profile"]};
