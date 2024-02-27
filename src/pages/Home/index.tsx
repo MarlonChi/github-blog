@@ -1,3 +1,10 @@
+import { UserCard } from "../../components/UserCard";
+import * as S from "./styles";
+
 export const Home = () => {
-  return <div>Home</div>;
+  return (
+    <S.HomeContainer>
+      <UserCard />
+    </S.HomeContainer>
+  );
 };
