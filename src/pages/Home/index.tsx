@@ -1,3 +1,4 @@
+import { PostCard } from "../../components/PostCard";
 import { Search } from "../../components/Search";
 import { UserCard } from "../../components/UserCard";
 
@@ -8,6 +9,12 @@ export const Home = () => {
     <S.HomeContainer>
       <UserCard />
       <Search />
+      <S.Posts>
+        <PostCard />
+        <PostCard />
+        <PostCard />
+        <PostCard />
+      </S.Posts>
     </S.HomeContainer>
   );
 };
