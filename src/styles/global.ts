@@ -17,6 +17,7 @@ export const GlobalStyle = createGlobalStyle`
         font-family: "Nunito", sans-serif;
         background: ${(props) => props.theme["base-background"]};
         color: ${(props) => props.theme["base-text"]};
+        font-size: 1.6rem;
     }
 
     :focus {
