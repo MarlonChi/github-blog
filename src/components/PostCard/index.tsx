@@ -1,10 +1,14 @@
+import { NavLink } from "react-router-dom";
+
 import * as S from "./styles";
 
 export const PostCard = () => {
   return (
     <S.PostCard>
       <S.PostTitle>
-        <h3>JavaScript data types and data structures</h3>
+        <NavLink to="/post">
+          <h3>JavaScript data types and data structures</h3>
+        </NavLink>
         <span>Há 1 dia</span>
       </S.PostTitle>
       <S.PostDescription>

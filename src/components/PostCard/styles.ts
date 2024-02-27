@@ -14,6 +14,10 @@ export const PostTitle = styled.div`
     font-size: 2rem;
     line-height: 160%;
     color: ${(props) => props.theme["base-title"]};
+
+    &:hover {
+      text-decoration: underline;
+    }
   }
 
   span {
