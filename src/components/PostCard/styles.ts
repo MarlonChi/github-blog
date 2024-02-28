@@ -8,6 +8,7 @@ export const PostCard = styled.div`
 
 export const PostTitle = styled.div`
   display: flex;
+  justify-content: space-between;
   gap: 1.6rem;
 
   h3 {
@@ -21,7 +22,7 @@ export const PostTitle = styled.div`
   }
 
   span {
-    width: 10rem;
+    text-transform: capitalize;
     color: ${(props) => props.theme["base-span"]};
   }
 `;

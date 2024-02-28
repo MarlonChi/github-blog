@@ -11,8 +11,21 @@ interface User {
   followers: number;
 }
 
+export interface PostItem {
+  id: number;
+  title: string;
+  body: string;
+  updated_at: string;
+}
+
+interface Post {
+  total_count: number;
+  items: PostItem[];
+}
+
 interface UserContextType {
   userData: User | null;
+  posts: Post | null;
 }
 
 export const UserContext = createContext({} as UserContextType);
@@ -23,6 +36,7 @@ interface UserContextTypeProps {
 
 export function UserContextProvider({ children }: UserContextTypeProps) {
   const [userData, setUserData] = useState<User | null>(null);
+  const [posts, setPosts] = useState(null);
 
   const fetchUserData = async () => {
     try {
@@ -35,11 +49,25 @@ export function UserContextProvider({ children }: UserContextTypeProps) {
     }
   };
 
+  const fetchPosts = async () => {
+    try {
+      const response = await axios.get(
+        `https://api.github.com/search/issues?q=%20repo:MarlonChi/lorem-blog`
+      );
+      setPosts(response.data);
+    } catch (error) {
+      console.error("Error fetching GitHub post data:", error);
+    }
+  };
+
   useEffect(() => {
     fetchUserData();
+    fetchPosts();
   }, []);
 
   return (
-    <UserContext.Provider value={{ userData }}>{children}</UserContext.Provider>
+    <UserContext.Provider value={{ userData, posts }}>
+      {children}
+    </UserContext.Provider>
   );
 }

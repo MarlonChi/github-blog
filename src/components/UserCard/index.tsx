@@ -19,8 +19,6 @@ export const UserCard = () => {
     return <p>Carregando...</p>;
   }
 
-  console.log("userData: ", userData);
-
   return (
     <S.UserCardContainer>
       <S.Avatar>
