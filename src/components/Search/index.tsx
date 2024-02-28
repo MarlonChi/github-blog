@@ -5,7 +5,7 @@ import { UserContext } from "../../contexts/UserContext";
 import * as S from "./styles";
 
 export const Search = () => {
-  const { posts } = useContext(UserContext);
+  const { posts, handleSearch } = useContext(UserContext);
 
   return (
     <S.SearchForm>
@@ -13,7 +13,11 @@ export const Search = () => {
         <h3>Publicações</h3>
         <span>{posts?.total_count} publicações</span>
       </S.SearchHeader>
-      <S.SearchInput type="text" placeholder="Buscar Conteúdo" />
+      <S.SearchInput
+        type="text"
+        placeholder="Buscar Conteúdo"
+        onChange={(e) => handleSearch(e.target.value)}
+      />
     </S.SearchForm>
   );
 };

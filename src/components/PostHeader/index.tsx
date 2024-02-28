@@ -26,8 +26,6 @@ interface PostHeaderProps {
 }
 
 export const PostHeader = ({ post }: PostHeaderProps) => {
-  console.log("post: ", post);
-
   if (!post) {
     return <p>Carregando...</p>;
   }
