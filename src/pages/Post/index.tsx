@@ -1,3 +1,10 @@
+import { PostHeader } from "../../components/PostHeader";
+import * as S from "./styles";
+
 export const Post = () => {
-  return <div>Post</div>;
+  return (
+    <S.PostContainer>
+      <PostHeader />
+    </S.PostContainer>
+  );
 };
