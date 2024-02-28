@@ -5,3 +5,7 @@ export const PostContainer = styled.section`
   width: 100%;
   margin: 0 auto;
 `;
+
+export const PostDescription = styled.div`
+  padding: 0 3.2rem;
+`;
