@@ -11,8 +11,6 @@ import * as S from "./styles";
 export const Home = () => {
   const { posts } = useContext(UserContext);
 
-  console.log(posts?.items);
-
   return (
     <S.HomeContainer>
       <UserCard />
@@ -24,6 +22,7 @@ export const Home = () => {
             title={item.title}
             description={item.body}
             date={item.updated_at}
+            number={item.number}
           />
         ))}
       </S.Posts>

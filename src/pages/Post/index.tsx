@@ -1,24 +1,39 @@
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { useParams } from "react-router-dom";
+
 import { PostHeader } from "../../components/PostHeader";
+
 import * as S from "./styles";
 
+interface Post {
+  body: string;
+}
+
 export const Post = () => {
+  const { id } = useParams();
+  const [post, setPost] = useState<Post | null>(null);
+
+  const getPost = async () => {
+    try {
+      const response = await axios.get(
+        `https://api.github.com/repos/MarlonChi/lorem-blog/issues/${id}`
+      );
+      setPost(response.data);
+    } catch (error) {
+      console.error("Error fetching GitHub issue:", error);
+    }
+  };
+
+  useEffect(() => {
+    getPost();
+  }, []);
+
   return (
     <S.PostContainer>
-      <PostHeader />
+      <PostHeader post={post} />
 
-      <S.PostDescription>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam eget
-        nisi suscipit, sollicitudin risus vel, ultrices metus. Suspendisse id mi
-        ligula. Integer ullamcorper justo et elit sodales, vitae venenatis felis
-        aliquet. Aenean interdum elementum enim, id placerat sapien elementum
-        hendrerit. Phasellus vitae convallis lectus. Donec neque libero,
-        consequat luctus tincidunt sed, maximus sit amet urna. Morbi magna
-        neque, porttitor non tortor id, cursus tempus sem. Phasellus sodales
-        nulla ac sapien imperdiet vestibulum eu in ex. Nullam erat libero,
-        faucibus non nibh sit amet, tincidunt vehicula nisi. In posuere finibus
-        felis, ac porttitor libero tempor eget. Suspendisse tincidunt efficitur
-        metus nec consectetur.
-      </S.PostDescription>
+      <S.PostDescription>{post?.body}</S.PostDescription>
     </S.PostContainer>
   );
 };

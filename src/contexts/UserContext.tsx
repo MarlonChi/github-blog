@@ -16,6 +16,7 @@ export interface PostItem {
   title: string;
   body: string;
   updated_at: string;
+  number: number;
 }
 
 interface Post {

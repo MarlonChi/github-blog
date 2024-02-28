@@ -8,9 +8,15 @@ interface PostCardProps {
   title: string;
   description: string;
   date: string;
+  number: number;
 }
 
-export const PostCard = ({ title, description, date }: PostCardProps) => {
+export const PostCard = ({
+  title,
+  description,
+  date,
+  number,
+}: PostCardProps) => {
   const dateString = date;
   const parsedDate = new Date(dateString);
 
@@ -22,7 +28,7 @@ export const PostCard = ({ title, description, date }: PostCardProps) => {
   return (
     <S.PostCard>
       <S.PostTitle>
-        <NavLink to="/post">
+        <NavLink to={`/post/${number}`}>
           <h3>{title}</h3>
         </NavLink>
         <span>{formattedDate}</span>

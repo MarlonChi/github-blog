@@ -1,7 +1,7 @@
-import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { formatDistanceToNow } from "date-fns";
+import { ptBR } from "date-fns/locale/pt-BR";
 
-import { UserContext } from "../../contexts/UserContext";
 import {
   CalendarIcon,
   ChevronLeftIcon,
@@ -12,8 +12,33 @@ import {
 
 import * as S from "./styles";
 
-export const PostHeader = () => {
-  const { userData } = useContext(UserContext);
+interface Post {
+  html_url: string;
+  title: string;
+  user: {
+    login: string;
+  };
+  updated_at: string;
+  comments: number;
+}
+interface PostHeaderProps {
+  post: Post;
+}
+
+export const PostHeader = ({ post }: PostHeaderProps) => {
+  console.log("post: ", post);
+
+  if (!post) {
+    return <p>Carregando...</p>;
+  }
+
+  const dateString = post.updated_at;
+  const parsedDate = new Date(dateString);
+
+  const formattedDate = formatDistanceToNow(parsedDate, {
+    addSuffix: true,
+    locale: ptBR,
+  });
 
   return (
     <S.PostHeaderContainer>
@@ -23,23 +48,24 @@ export const PostHeader = () => {
             <ChevronLeftIcon color="#3294F8" />
             Voltar
           </Link>
-          <Link to="" target="_blank">
+          <Link to={post.html_url} target="_blank">
             Ver no Github
             <LinkIcon color="#3294F8" />
           </Link>
         </S.CardHeader>
-        <h2>JavaScript data types and data structures</h2>
+        <h2>{post.title}</h2>
         <S.CardFooter>
           <S.Item>
             <GithubIcon color="#3A536B" />
-            {userData?.login}
+            {post?.user?.login}
           </S.Item>
           <S.Item>
             <CalendarIcon color="#3A536B" />
-            Há 1 dia
+            {formattedDate}
           </S.Item>
           <S.Item>
-            <CommentIcon color="#3A536B" />5 comentários
+            <CommentIcon color="#3A536B" />
+            {post.comments} comentários
           </S.Item>
         </S.CardFooter>
       </S.PostHeaderInformationContainer>
